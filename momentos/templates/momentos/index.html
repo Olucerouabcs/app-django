@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen Unidad II-III_Menu</title>
+    <!-- CSS only -->
+    <link 
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" 
+    rel="stylesheet" 
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" 
+    crossorigin="anonymous">
+    <!--Mapa -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+    <link rel="stylesheet" href="fontawesome-free-6.2.0-web/css/all.css">
+    <style>
+        .imagen{
+            width: 10%;
+            margin-top: -3.5%;
+            margin-left: 15%;
+        }
+        .encabezado{
+            height: 100px;
+            width: 100%;
+            color: rgb(199,151,107);
+            text-align: center;
+            font-size: 40px;
+            background-color: rgb(94,58,198);
+        }
+        .link{
+            color: rgb(94,58,198);
+        }
+        .menu{
+            height: 100px;
+            width: 100%;
+            width: 99.7%;
+            border: 2px solid rgb(199,151,107);
+        }
+        .menuOpciones1{
+            width: 15%;
+            text-align: center;
+            float: left;
+            margin-top: 30px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            color: rgb(94,58,198);
+                
+        }
+        .menuOpciones2{
+            width: 15%;
+            text-align: center;
+            float: right;
+            margin-top: 30px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            color: rgb(94,58,198);
+                
+        }
+        .menuOpciones1:hover{
+            background-color: rgb(199,151,107);
+        }
+        .menuOpciones2:hover{
+            background-color: rgb(199,151,107);
+        }
+        .banner{
+            height: 400px;
+            width: 100%;
+            background-color: rgb(94,58,198);
+            border-color:  rgb(199,151,107);
+            text-align: center;
+        }
+        .texto1{
+            color: rgb(94,58,198);
+            padding-top: 100px;
+        }
+        #textbanner{
+            font-size: 20px;
+            color: rgb(199,151,107);
+        }
+        .rastreador{
+            height: 70px;
+            width: 70%;
+            background-color: rgb(94,58,198);
+            border-radius: 10px;
+            margin: 0 auto;
+        }
+        .codigo{
+            margin-top: 1.5%;
+            margin-left: 5%;
+            width: 70%;
+            height: 40px;
+            border: 1px solid #ccd0d5;
+            font-size: large;
+            text-align: center;
+            border-radius: 10px;
+            background-color: #D9D9D9;
+        }
+        .boton_Rastrear{
+            margin-top: 1.6%;
+            margin-right: 2%;
+            width: 20%;
+            height: 40px;
+            border:none;
+            border-radius: 10px;
+            color: white;
+            text-align: center;
+            font-size: large;
+            background-color:  rgb(199,151,107);
+            float: right;
+        }
+        .boton_Rastrear:hover{
+            background-color: #7358C7;
+        }
+        .opcion1{
+            margin-top: 20%;
+            margin-left: 14%;
+            height: 300px;
+            width: 30%;
+            color: white;
+            font-size: 25px;
+            text-align: center;
+            background-color: #7358C7;
+        }
+        .opcion1:hover{
+            background-color: rgb(94,58,198);
+        }
+        .opcion2{
+            margin-top: -22.5%;
+            margin-right: 14%;
+            height: 300px;
+            width: 30%;
+            color: white;
+            font-size: 25px;
+            text-align: center;
+            background-color: #7358C7;
+            float: right;
+        }
+        .opcion2:hover{
+            background-color: rgb(94,58,198);
+        }
+        .opcion3{
+            margin-top: 5%;
+            margin-left: 14%;
+            height: 300px;
+            width: 30%;
+            color: white;
+            font-size: 25px;
+            text-align: center;
+            background-color: #7358C7;
+        }
+        .opcion3:hover{
+            background-color: rgb(94,58,198);
+        }
+        .opcion4{
+            margin-top: -22.5%;
+            margin-right: 14%;
+            height: 300px;
+            width: 30%;
+            color: white;
+            font-size: 25px;
+            text-align: center;
+            background-color: #7358C7;
+            float: right;
+        }
+        .opcion4:hover{
+            background-color: rgb(94,58,198);
+        }
+        .piePagina{
+            margin-top: 10%;
+            height: 100px;
+            width: 100%;
+            background-color: rgb(94,58,198);
+        }
+        .fa-solid.fa-star{
+            font-size: 350px;
+            color: rgb(199,151,107);
+        }
+        .fa-solid.fa-parachute-box{
+            margin-top: 10%;
+            margin-left: 2%;
+            font-size: 200px;
+            color: rgb(199,151,107);
+        }
+        .fa-solid.fa-clipboard-check{
+            margin-top: 10%;
+            margin-left: 2%;
+            font-size: 200px;
+            color: rgb(199,151,107);
+        }
+        .fa-solid.fa-building{
+            margin-top: 10%;
+            margin-left: 2%;
+            font-size: 200px;
+            color: rgb(199,151,107);
+        }
+        .fa-solid.fa-table-cells-large{
+            margin-top: 10%;
+            margin-left: 2%;
+            font-size: 200px;
+            color: rgb(199,151,107);
+        }
+        .fa-brands.fa-youtube{
+            font-size: 40px;
+            text-align: center;
+            float: left;
+            margin-top: 30px;
+            margin-right: 20px;
+            margin-left: -30px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            color:rgb(199,151,107);  
+        }
+        .fa-brands.fa-facebook-f{
+            font-size: 40px;
+            text-align: center;
+            float: left;
+            margin-top: 30px;
+            margin-right: 20px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            color:rgb(199,151,107); 
+        }
+        .fa-brands.fa-instagram{
+            font-size: 40px;
+            text-align: center;
+            float: left;
+            margin-top: 30px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            color:rgb(199,151,107); 
+        }
+        .infoPiePagina{
+            width: 15%;
+            text-align: center;
+            float: left;
+            margin-top: 30px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            color:white;   
+        }
+        .respmenu{
+            visibility: hidden;
+        }
+        @media screen and (max-width: 425px) {
+            .imagen{
+                width: 65px;
+                margin-top: -70px;
+                margin-left: -90px;
+                float: left;
+            }
+            .respmenu{
+                visibility: visible;
+            }
+            .encabezado{
+                height: 100px;
+                width: 100%;
+                color: rgb(199,151,107);
+                text-align: left;
+                font-size: 25px;
+                background-color: rgb(94,58,198);
+            }
+            .respmenu a {
+                color: inherit;
+                text-decoration: none;
+                display: block;
+                padding: 10px 20px;
+                border-bottom: 2px solid rgb(94,58,198);
+                max-width: 200px;
+                background:  rgb(94,58,198);
+                font-variant: small-caps;
+                text-shadow: 1px 1px black;
+            }
+            .respmenu input[type="checkbox"], .respmenu .fa-bars, .respmenu .fa-times {
+                position: absolute;
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+                right: 0;
+                top: 0;
+                width: 48px;
+                height: 48px;
+            }
+            .respmenu .fa-bars, .respmenu .fa-times {
+                font-size: 48px;
+                pointer-events: none;
+            }
+            .respmenu input[type="checkbox"] {
+                opacity: 0;
+            }
+            .respmenu {
+                color: rgb(199,151,107);
+                width: 200px;
+                position: relative;
+                background:  rgb(94,58,198);
+                min-height: 48px;
+                margin-left: 140px;
+            }
+            .respmenu nav {
+                display: none;
+            }
+            .respmenu input:checked ~ nav {
+                display: block;
+            }
+            .respmenu input:checked ~ .fa-bars {
+                display: none;
+            }
+            .respmenu input:not(:checked) ~ .fa-times {
+                display: none;
+            }
+            .link{
+                display: none;
+            }
+            .menu{
+                height: 20px;
+                width: 100%;
+                border: none;
+                margin-top: -10px;
+                background-color:rgb(199,151,107);
+            }
+            .menuOpciones1{
+                width: 15%;
+                text-align: center;
+                float: left;
+                margin-top: 30px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                color: rgb(94,58,198);
+                    
+            }
+            .menuOpciones2{
+                width: 15%;
+                text-align: center;
+                float: right;
+                margin-top: 30px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                color: rgb(94,58,198);
+                    
+            }
+            .menuOpciones1:hover{
+                background-color: rgb(199,151,107);
+            }
+            .menuOpciones2:hover{
+                background-color: rgb(199,151,107);
+            }
+            .banner{
+                height: 300px;
+                width: 100%;
+                background-color: rgb(94,58,198);
+                border-color:  rgb(199,151,107);
+                text-align: center;
+            }
+            .texto1{
+                color: rgb(94,58,198);
+                padding-top: 0px;
+            }
+            #textbanner{
+                font-size: 20px;
+                color: rgb(199,151,107);
+            }
+            .rastreador{
+                height: 70px;
+                width: 100%;
+                background-color: rgb(94,58,198);
+                border-radius: 10px;
+                margin: 0 auto;
+            }
+            .codigo{
+                margin-top: 7px;
+                margin-left: 2%;
+                width: 65%;
+                height: 50px;
+                border: 1px solid #ccd0d5;
+                font-size: large;
+                text-align: center;
+                border-radius: 10px;
+                background-color: #D9D9D9;
+            }
+            .boton_Rastrear{
+                margin-top: 14px;
+                margin-right: 5px;
+                width: 100px;
+                height: 40px;
+                border:none;
+                border-radius: 10px;
+                color: white;
+                text-align: center;
+                font-size:medium;
+                background-color:  rgb(199,151,107);
+                float: right;
+            }
+            .boton_Rastrear:hover{
+                background-color: #7358C7;
+            }
+            .opcion1{
+                margin-top: 20px;
+                margin-left: 1px;
+                height: 150px;
+                width: 99%;
+                color: white;
+                font-size: 25px;
+                text-align: center;
+                background-color: #7358C7;
+            }
+            .opcion1:hover{
+                background-color: rgb(94,58,198);
+            }
+            .opcion2{
+                margin-top: 20px;
+                margin-left: 1px;
+                height: 150px;
+                width: 99%;
+                color: white;
+                font-size: 25px;
+                text-align: center;
+                background-color: #7358C7;
+                float: none;
+            }
+            .opcion2:hover{
+                background-color: rgb(94,58,198);
+            }
+            .opcion3{
+                margin-top: 20px;
+                margin-left: 1px;
+                height: 150px;
+                width: 99%;
+                color: white;
+                font-size: 25px;
+                text-align: center;
+                background-color: #7358C7;
+            }
+            .opcion3:hover{
+                background-color: rgb(94,58,198);
+            }
+            .opcion4{
+                margin-top: 20px;
+                margin-left: 1px;
+                height: 150px;
+                width: 99%;
+                color: white;
+                font-size: 25px;
+                text-align: center;
+                background-color: #7358C7;
+                float: none;
+            }
+            .opcion4:hover{
+                background-color: rgb(94,58,198);
+            }
+            .piePagina{
+                margin-top: 300px;
+                height: 70px;
+                width: 100%;
+                background-color: rgb(94,58,198);
+            }
+            .fa-solid.fa-star{
+                font-size: 200px;
+                color: rgb(199,151,107);
+            }
+            .fa-solid.fa-parachute-box{
+                margin-top: 10px;
+                margin-left: 2%;
+                font-size: 100px;
+                color: rgb(199,151,107);
+            }
+            .fa-solid.fa-clipboard-check{
+                margin-top: 10px;
+                margin-left: 2%;
+                font-size: 100px;
+                color: rgb(199,151,107);
+            }
+            .fa-solid.fa-building{
+                margin-top: 10px;
+                margin-left: 2%;
+                font-size: 100px;
+                color: rgb(199,151,107);
+            }
+            .fa-solid.fa-table-cells-large{
+                margin-top: 10px;
+                margin-left: 2%;
+                font-size: 100px;
+                color: rgb(199,151,107);
+            }
+            .fa-brands.fa-youtube{
+                font-size: 20px;
+                text-align: center;
+                float: left;
+                margin-top: -18px;
+                margin-right: 20px;
+                margin-left: -20px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                color:rgb(199,151,107);  
+            }
+            .fa-brands.fa-facebook-f{
+                font-size: 20px;
+                text-align: center;
+                float: left;
+                margin-top: -18px;
+                margin-right: 20px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                color:rgb(199,151,107);
+            }
+            .fa-brands.fa-instagram{
+                font-size: 20px;
+                text-align: center;
+                float: left;
+                margin-top: -18px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                color:rgb(199,151,107); 
+            }
+            .infoPiePagina{
+                width: 0%;
+                font-size: 12px;
+                float: left;
+                text-align: none;
+                margin-top: 0px;
+                margin-right: 80px;
+                color:white; 
+                padding-top: 0px;
+                padding-bottom: 0px;
+            }
+        }
+        @media screen and (max-width: 320px) {
+            #textbanner{
+                font-size: 15px;
+                color: rgb(199,151,107);
+            }
+            .boton_Rastrear{
+                width: 90px;
+                margin-top: -46px;
+                margin-right: 5px;
+            }
+            .respmenu {
+                color: rgb(199,151,107);
+                margin-left: 100px;
+            }
+            .infoPiePagina{
+                width: 0%;
+                font-size: 10px;
+                float: left;
+                text-align: none;
+                margin-top: 0px;
+                margin-right: 80px;
+                color:white; 
+                padding-top: 0px;
+                padding-bottom: 0px;
+            }
+            .fa-brands.fa-youtube{
+                margin-top: -10px;
+                font-size: 12px;  
+            }
+            .fa-brands.fa-facebook-f{
+                margin-top: -10px;
+                font-size: 12px;
+            }
+            .fa-brands.fa-instagram{
+                margin-top: -10px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="encabezado">EAGLE DELIVERY
+        <div class="respmenu">
+            <input type="checkbox">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-times"></i>
+            <nav>
+              <ul>
+                <li><a href="{%url 'logout'%}">Inicio</a></li>
+                <li><a href="Examen Unidad II-III_Servicio.html">Servicio</a></li>
+                <li><a href="Examen Unidad II-III_Acerca de.html">Acerca de</a></li>
+                <li><a href="Examen Unidad II-III_Contacto.html">Contacto</a></li>
+              </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="menu">
+        <div id="c1" class="menuOpciones1"><a class="link" href="{%url 'logout'%}" style="text-decoration:none ;"><b>Inicio</b></a></div>
+        <div id="c2" class="menuOpciones1"><a class="link" href="Examen Unidad II-III_Servicio.html" style="text-decoration:none ;"><b>Servicio</b></a></div>
+        <div id="c2" class="menuOpciones2"><a class="link" href="Examen Unidad II-III_Acerca de.html" style="text-decoration:none ;"><b>Acerca de</b></a></div>
+        <div id="c2" class="menuOpciones2"><a class="link" href="Examen Unidad II-III_Contacto.html" style="text-decoration:none ;"><b>Contacto</b></a></div>
+        <img class="imagen" src="Logo.png" alt="Logo aguila">
+    </div>
+    <div class="banner">
+        <i class="fa-solid fa-star"><p id="textbanner">Promocion de inaguracion: 20% de descuento</p></i>
+    </div>
+    <h2 class="texto1">Rastree su envio</h2>
+    <div class="rastreador">
+        <input type="text" name="codigo" class="codigo" placeholder="Ingrese el codigo de envio">
+        <button class="boton_Rastrear">Rastrear</button>
+    </div>
+    <div class="fila1">
+        <a href="C:\Users\osvaldo\Desktop\Programacion web\Documentos HTML\Examen Unidad II-III\Examen Unidad II-III_Servicio.html" style="text-decoration:none ;"><div class="opcion1" >
+            <i class="fa-solid fa-parachute-box"></i>
+            <p style="margin-top:1px ;">Servicio de Envio</p>
+        </div>
+        </a>
+        <div class="opcion2">
+            <i class="fa-solid fa-clipboard-check"></i>
+            <p style="margin-top:1px ;">Cotización</p>
+        </div>
+    </div>
+    <div class="fila2">
+        <div class="opcion3">
+            <i class="fa-solid fa-building"></i>
+            <p style="margin-top:1px ;">Empresas</p>
+        </div>
+        <div class="opcion4">
+            <i class="fa-solid fa-table-cells-large"></i>
+            <p style="margin-top:1px ;">Información Importante</p>
+        </div>
+    </div>
+    <div class="piePagina">
+        <p class="infoPiePagina">Condiciones de uso</p>
+        <p class="infoPiePagina">Información adicional</p>
+        <p class="infoPiePagina">Aviso legal</p>
+        <p class="infoPiePagina">Aviso de prioridad</p>
+        <p class="infoPiePagina">Accesibilidad</p>
+        <p class="infoPiePagina">Siganos:</p>
+        <i class="fa-brands fa-youtube"></i>
+        <i class="fa-brands fa-facebook-f"></i>
+        <i class="fa-brands fa-instagram"></i>
+    </div>
+    <main class = "container-fluid">
+        <div id ="map"></div>>
+    </main>
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+</body>
+</html>
